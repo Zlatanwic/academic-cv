@@ -1,14 +1,14 @@
 ---
-title: 'Projects'
-date: 2024-05-19
+title: Projects
 type: landing
 
-# Page sections
 sections:
   - block: collection
     content:
-      title: Selected Projects
-      text: I enjoy making things. Here are a selection of projects that I have worked on over the years.
+      title: Research and Systems Projects
+      text: >-
+        Selected work on efficient machine learning systems, compilation and
+        runtime infrastructure, and systems engineering.
       filters:
         folders:
           - projects
@@ -18,5 +18,5 @@ sections:
       columns: 3
       show_date: false
       show_read_time: false
-      show_read_more: false
+      show_read_more: true
 ---

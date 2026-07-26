@@ -157,6 +157,52 @@ class SiteContentContractTests(unittest.TestCase):
         for forbidden in ("ACM MM", "HPCA", "4/4/3/2/2", "Research Assistant"):
             self.assertNotIn(forbidden, experience)
 
+    def test_projects_match_approved_public_descriptions(self) -> None:
+        index = read_text("content/projects/_index.md")
+        semserve = read_optional_text("content/projects/semserve/index.md")
+        skvm = read_optional_text("content/projects/skvm/index.md")
+        systems = read_optional_text("content/projects/systems-projects/index.md")
+
+        self.assertIn("Research and Systems Projects", index)
+        self.assertNotIn("I enjoy making things", index)
+
+        for expected in (
+            "SemServe: Co-designing Semantic Priority and KV-Cache Storage Precision",
+            "automatic semantic scoring",
+            "offline search and online computation",
+            "MLFQ",
+            "FP16",
+            "INT8",
+            "CPU memory",
+            "Qwen2.5-3B",
+            "Llama-3.2-3B",
+            "Manuscript in preparation",
+        ):
+            self.assertIn(expected, semserve)
+        for forbidden in ("CCF-A", "ACM MM", "review score"):
+            self.assertNotIn(forbidden, semserve)
+
+        for expected in (
+            "SkVM: A Skill Compilation and Runtime System for Heterogeneous LLM and Agent Harnesses",
+            "pi, claude-code, opencode, and hermes",
+            "DLP, ILP, and TLP",
+            "AOT compiler",
+            "parallel dispatch",
+            "JIT optimization",
+            "SOSP 2026",
+        ):
+            self.assertIn(expected, skvm)
+
+        for expected in (
+            "Rust-based operating-system kernel",
+            "MCP server",
+            "Paged Attention",
+            "Chord",
+            "Mini-GFS",
+            "Go",
+        ):
+            self.assertIn(expected, systems)
+
 
 if __name__ == "__main__":
     unittest.main()
