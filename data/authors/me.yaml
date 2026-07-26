@@ -28,3 +28,60 @@ interests:
   - DL compilers, operator optimization, megakernel design, and high-performance operator generation
   - Efficient AI, including sparse attention
   - Agent-system infrastructure, including multi-agent orchestration and agent harnesses
+
+education:
+  - degree: B.Eng. in Data Science and Big Data Technology
+    institution: Tongji University
+    year: 2023–2027 (Expected)
+    summary: |-
+      Department of Computer Science and Technology
+
+      English proficiency: IELTS 7.0; CET-6 571.
+
+skills:
+  - name: Programming Languages
+    items:
+      - label: Rust
+      - label: C/C++
+      - label: Python
+      - label: Go
+  - name: Systems and Architecture
+    items:
+      - label: Linux
+      - label: Distributed systems
+      - label: Concurrency
+      - label: RISC-V
+      - label: Process and memory management
+      - label: Page-table mechanisms
+      - label: System calls
+      - label: ELF
+      - label: File systems
+  - name: AI Systems and Performance
+    items:
+      - label: CUDA C++
+      - label: Operator optimization
+      - label: PyTorch
+      - label: Transformers
+      - label: vLLM
+      - label: KV Cache
+      - label: Paged Attention
+      - label: Nsight Compute
+  - name: Engineering and Research Tools
+    items:
+      - label: Git
+      - label: CMake
+      - label: C++/CUDA extension development
+      - label: Vite/Vue
+      - label: Modern coding agents
+      - label: AI-assisted problem solving
+
+awards:
+  - title: National First Prize
+    awarder: Global Campus Artificial Intelligence Algorithm Competition, Algorithm Challenge Track
+    date: "December 2025"
+    summary: First-ranked team member.
+    icon: hero/trophy
+  - title: International Silver Medal
+    awarder: International Genetically Engineered Machine Competition (iGEM)
+    date: "October 2025"
+    icon: hero/trophy

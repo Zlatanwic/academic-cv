@@ -108,6 +108,55 @@ class SiteContentContractTests(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, homepage)
 
+    def test_experience_education_skills_and_honors_are_accurate(self) -> None:
+        profile = read_text("data/authors/me.yaml")
+        experience = read_text("content/experience.md")
+
+        for expected in (
+            "B.Eng. in Data Science and Big Data Technology",
+            "Tongji University",
+            "Department of Computer Science and Technology",
+            "year: 2023–2027 (Expected)",
+            "IELTS 7.0",
+            "CET-6 571",
+            "Programming Languages",
+            "Rust",
+            "Systems and Architecture",
+            "AI Systems and Performance",
+            "Engineering and Research Tools",
+            "National First Prize",
+            "International Silver Medal",
+            'date: "December 2025"',
+            'date: "October 2025"',
+        ):
+            self.assertIn(expected, profile)
+
+        self.assertNotRegex(profile, r"(?m)^\s*(start|end|date_start|date_end):")
+        self.assertNotRegex(profile, r"(?m)^\s*level:")
+        self.assertNotRegex(profile, r"(?i)\bGPA\b")
+
+        for expected in (
+            "Image Fusion Laboratory, Tongji University",
+            "Prof. Wei Tang",
+            "Independent Research",
+            "KV-cache management",
+            "accepted for an oral presentation",
+            "IPADS Laboratory, Shanghai Jiao Tong University",
+            "Prof. Erhu Feng",
+            "LANDS Laboratory, Nanjing University",
+            "Prof. Chengying Huan",
+            "RISC-V edge-inference",
+            "manuscript is in preparation",
+            "title: Education",
+            "2023–2027 (Expected)",
+            "title: Skills",
+            "title: Honors",
+        ):
+            self.assertIn(expected, experience)
+
+        for forbidden in ("ACM MM", "HPCA", "4/4/3/2/2", "Research Assistant"):
+            self.assertNotIn(forbidden, experience)
+
 
 if __name__ == "__main__":
     unittest.main()
