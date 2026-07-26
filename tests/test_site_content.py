@@ -108,6 +108,18 @@ class SiteContentContractTests(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, homepage)
 
+    def test_publications_page_is_an_honest_empty_state(self) -> None:
+        publications_dir = ROOT / "content/publications"
+        index = read_text("content/publications/_index.md")
+        child_bundles = sorted(path.name for path in publications_dir.iterdir() if path.is_dir())
+
+        self.assertIn("title: Publications", index)
+        self.assertEqual([], child_bundles)
+        self.assertIn(
+            "Publication details will be added as official bibliographic records become available.",
+            index,
+        )
+
     def test_experience_education_skills_and_honors_are_accurate(self) -> None:
         profile = read_text("data/authors/me.yaml")
         experience = read_text("content/experience.md")
