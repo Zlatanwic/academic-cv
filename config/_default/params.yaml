@@ -12,20 +12,15 @@ hugoblox:
   # Site-level branding (for people/profiles, use the author system in content/authors/)
   # ────────────────────────────────────────────────────────────────────────────
   identity:
-    # Site name - shown in navbar, footer, copyright, and browser title by default
-    name: "Your Name"
-    # Legal entity for copyright notices (defaults to name if not set)
-    organization: ""
-    # Schema.org type for structured data
-    type: person # person | organization | local_business
-    # Short tagline displayed on your site
-    tagline: ""
-    # Site meta description for search engines and social sharing
-    description: "The highly-customizable Hugo Academic theme powered by HugoBlox
-      Kit. Easily create your personal academic website."
-    # Social accounts (used for meta tags like Twitter Cards)
-    social:
-      twitter: "GoOwnable" # Twitter/X handle for Twitter Cards (without @)
+    name: "Kuo Li"
+    organization: "Tongji University"
+    type: person
+    tagline: "Full-stack ML systems researcher"
+    description: >-
+      Academic profile of Kuo Li, an undergraduate researcher at Tongji
+      University working on full-stack ML systems, efficient LLM inference,
+      deep learning compilers, and agent infrastructure.
+    social: {}
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
@@ -146,8 +141,8 @@ hugoblox:
       allow:
         - /
       disallow: []
-      note: "Guidance for AI crawlers - customize to match your public content."
-      contact: ""
+      note: "Public academic profile and research project information."
+      contact: "mailto:2353113@tongji.edu.cn"
 
   # ────────────────────────────────────────────────────────────────────────────
   # CONTENT
