@@ -77,6 +77,37 @@ class SiteContentContractTests(unittest.TestCase):
         for forbidden in ("Download CV", "resume.pdf"):
             self.assertNotIn(forbidden, homepage)
 
+    def test_homepage_is_research_focused_and_privacy_safe(self) -> None:
+        homepage = read_text("content/_index.md")
+
+        for expected in (
+            "username: me",
+            "Research Overview",
+            "full-stack machine learning systems",
+            "LLM inference, training, and serving",
+            "deep learning compilers",
+            "sparse attention",
+            "agent-system infrastructure",
+            "id: projects",
+            "Selected Projects",
+            "id: papers",
+            "Publication details will be added as official bibliographic records become available.",
+        ):
+            self.assertIn(expected, homepage)
+
+        for forbidden in (
+            "Download CV",
+            "resume.pdf",
+            "DeepMind",
+            "Featured Publications",
+            "Recent Publications",
+            "Recent & Upcoming Talks",
+            "Recent News",
+            "Build your own academic website",
+            "demo: true",
+        ):
+            self.assertNotIn(forbidden, homepage)
+
 
 if __name__ == "__main__":
     unittest.main()
