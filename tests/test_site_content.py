@@ -57,6 +57,7 @@ class SiteContentContractTests(unittest.TestCase):
 
     def test_navigation_has_only_approved_destinations(self) -> None:
         menu = read_text("config/_default/menus.yaml")
+        homepage = read_text("content/_index.md")
         expected_pairs = {
             "Home": "/",
             "Publications": "/publications/",
@@ -72,6 +73,9 @@ class SiteContentContractTests(unittest.TestCase):
 
         for forbidden in ("Talks", "News", "Courses", "Download CV", "resume.pdf"):
             self.assertNotIn(forbidden, menu)
+
+        for forbidden in ("Download CV", "resume.pdf"):
+            self.assertNotIn(forbidden, homepage)
 
 
 if __name__ == "__main__":
