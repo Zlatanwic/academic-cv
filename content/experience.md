@@ -39,9 +39,12 @@ sections:
     content:
       title: Education
       text: |-
-        **B.Eng. in Data Science and Big Data Technology**  
-        Tongji University, Department of Computer Science and Technology  
-        2023–2027 (Expected)  
+        **B.Eng. in Data Science and Big Data Technology**
+
+        Tongji University, Department of Computer Science and Technology
+
+        2023–2027 (Expected)
+
         English proficiency: IELTS 7.0; CET-6 571.
     design:
       columns: '1'
