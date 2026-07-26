@@ -11,6 +11,28 @@ def read_text(relative_path: str) -> str:
     return (ROOT / relative_path).read_text(encoding="utf-8")
 
 
+PUBLISHED_ROOTS = (
+    "content",
+    "data/authors",
+    "config/_default",
+    "layouts",
+    "static",
+)
+TEXT_SUFFIXES = {".html", ".md", ".txt", ".yaml", ".yml"}
+
+
+def published_text() -> str:
+    chunks: list[str] = []
+    for relative_root in PUBLISHED_ROOTS:
+        root = ROOT / relative_root
+        if not root.exists():
+            continue
+        for path in root.rglob("*"):
+            if path.is_file() and path.suffix.lower() in TEXT_SUFFIXES:
+                chunks.append(path.read_text(encoding="utf-8"))
+    return "\n".join(chunks)
+
+
 def read_optional_text(relative_path: str) -> str:
     path = ROOT / relative_path
     return path.read_text(encoding="utf-8") if path.is_file() else ""
@@ -214,6 +236,44 @@ class SiteContentContractTests(unittest.TestCase):
             "Go",
         ):
             self.assertIn(expected, systems)
+
+    def test_demonstration_content_is_removed(self) -> None:
+        removed_paths = (
+            "content/blog",
+            "content/courses",
+            "content/events",
+            "content/slides",
+            "content/projects/pandas",
+            "content/projects/pytorch",
+            "content/projects/scikit",
+            "assets/media/slides-logo.svg",
+            "layouts/_partials/hooks/head-end/github-button.html",
+            "static/uploads/resume.pdf",
+        )
+        for relative_path in removed_paths:
+            self.assertFalse((ROOT / relative_path).exists(), relative_path)
+
+        text = published_text()
+        for forbidden in (
+            "Alex Johnson",
+            "Meta AI",
+            "OpenAI",
+            "Stanford University",
+            "Lorem ipsum",
+            "Build your own academic website",
+            "alex.johnson@example.com",
+        ):
+            self.assertNotIn(forbidden, text)
+
+    def test_sensitive_and_anonymous_review_data_is_not_published(self) -> None:
+        text = published_text()
+
+        self.assertNotRegex(text, r"(?i)\bGPA\b")
+        self.assertNotRegex(text, r"(?<!\d)1\d{10}(?!\d)")
+        self.assertNotIn("4/4/3/2/2", text)
+        self.assertNotIn("pre-rebuttal review", text.lower())
+        self.assertNotIn("targeting HPCA", text)
+        self.assertFalse((ROOT / "static/uploads/resume.pdf").exists())
 
 
 if __name__ == "__main__":
